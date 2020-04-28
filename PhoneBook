@@ -36,6 +36,10 @@ phoneBook::phoneBook() {
 
 bool
 phoneBook::Insert(phoneData*data) {
+	if (lst_ == 0) {
+		lst_ = new phoneNode(data, 0);
+		return;
+	}
 	phoneNode*ptr = lst_;
 	ptr = ptr->next_;
 	ptr->next_ = new phoneNode(data, ptr->next_);
@@ -47,17 +51,26 @@ phoneData*phoneBook::Delete(string name) {
 	if (lst_ == 0) {
 		return;
 	}
-	if (lst_->data_ == name) {
-
+	if (ptr->next_ == 0) {
+		return;
 	}
-	while (ptr->next_ != 0 && ptr->next_->data_ != name) {
-
-	}
+	phoneNode*dptr = ptr->next_;
+	ptr->next_ = ptr->next_->next_;
+	delete dptr;
 }
 
 
 phoneData*phoneBook::Find(string name) {
-
+	phoneNode*ptr = lst_;
+	int find = 0;
+	while (ptr != 0) {
+		if (ptr->data_ == name) {
+			return find;
+		}
+		ptr = ptr->next_;
+		find++;
+	}
+	return -1;
 }
 
 
