@@ -34,29 +34,42 @@ phoneBook::phoneBook() {
 	lst_ = 0;
 }
 
+phoneData::phoneData(string name, string phoneNumber, string address) {
+	name_ = name;
+	phoneNumber_ = phoneNumber;
+	address_ = address;
+}
+
+phoneNode::phoneNode(phoneData * data, phoneNode * next) {
+	data_ = data;
+	next_ = next;
+}
+
 bool
 phoneBook::Insert(phoneData*data) {
 	if (lst_ == 0) {
 		lst_ = new phoneNode(data, 0);
-		return;
+		return 0;
 	}
 	phoneNode*ptr = lst_;
-	ptr = ptr->next_;
+	//ptr = ptr->next_;
 	ptr->next_ = new phoneNode(data, ptr->next_);
+	return 0;
 }
 
 
 phoneData*phoneBook::Delete(string name) {
 	phoneNode*ptr = lst_;
 	if (lst_ == 0) {
-		return;
+		return 0;
 	}
 	if (ptr->next_ == 0) {
-		return;
+		return 0;
 	}
 	phoneNode*dptr = ptr->next_;
 	ptr->next_ = ptr->next_->next_;
 	delete dptr;
+	return 0;
 }
 
 
@@ -64,8 +77,8 @@ phoneData*phoneBook::Find(string name) {
 	phoneNode*ptr = lst_;
 	int find = 0;
 	while (ptr != 0) {
-		if (ptr->data_ == name) {
-			return find;
+		if (ptr->data_->name_ == name) {
+			return ptr->data_;
 		}
 		ptr = ptr->next_;
 		find++;
@@ -76,6 +89,9 @@ phoneData*phoneBook::Find(string name) {
 
 void
 phoneData::printPD() {
+	cout << "name : "<< name_ <<" ";
+	cout <<"phone number : "<< phoneNumber_ << " ";
+	cout << "address : "<<address_ <<" ";
 }
 
 int main() {
