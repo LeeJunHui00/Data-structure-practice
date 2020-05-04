@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+class queue3 {
+public:
+	queue3() {
+		rear = 0;
+	}
+	bool IsEmpty() { return (rear == 0); };
+	bool IsFull() { return (rear == 3); };
+	bool InsertQ(int el) {
+		if (rear == 3) return false;
+		arr[rear++] = el;
+		return true;
+	}
+	int DeleteQ() {
+		if (rear == 0) return -1;
+		int el = arr[0];
+		rear--;
+		for (int i = 0; i < rear; i++) arr[i] = arr[i + 1];
+		return el;
+	}
+private:
+	int arr[3];
+	int rear;
+};
+
+class queue6 {
+public:
+	queue6();
+	bool IsEmpty();
+	bool IsFull();
+	bool InsertQ(int el);
+	int DeleteQ();
+private:
+	queue3 q1;
+	queue3* q2;
+};
+
+queue6::queue6() {
+	queue3* q2 = new queue3;
+}
+
+bool
+queue6::IsEmpty() {
+
+}
+
+bool
+queue6::IsFull() {
+}
+
+int
+queue6::DeleteQ() {
+
+}
+
+bool
+queue6::InsertQ(int el) {
+}
+
+
+int main() {
+	int n, i, a;
+	queue6* q = new queue6();
+
+	cin >> n;
+	for (i = 0; i < n; i++) {
+		cin >> a;
+		if (a == 0) cout << q->DeleteQ() << " ";
+		else q->InsertQ(a);
+	}
+	return 0;
+};
