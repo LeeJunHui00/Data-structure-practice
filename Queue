@@ -38,27 +38,36 @@ private:
 };
 
 queue6::queue6() {
-	queue3* q2 = new queue3;
-}
-
-bool
-queue6::IsEmpty() {
-
-}
-
-bool
-queue6::IsFull() {
-}
-
-int
-queue6::DeleteQ() {
-
+	q2 = new queue3();
 }
 
 bool
 queue6::InsertQ(int el) {
+	if (IsFull()) {						//q1이 가득 찼을 경우
+		q2->InsertQ(el);
+		return true;
+	}
+	q1.InsertQ(el);						//q1에 자리가 있을 경우
+	return true;
 }
 
+int
+queue6::DeleteQ() {
+	if (IsEmpty()) {
+		return q2->DeleteQ();
+	}
+	return q1.DeleteQ();
+}
+
+bool
+queue6::IsEmpty() {
+	return q1.IsEmpty();				//q1에 자리가 있으면 return 0, 가득 찼으면 return 1
+}
+
+bool
+queue6::IsFull() {
+	return q1.IsFull();				//q1에 자리가 있으면 return 1, 가득 찼으면 return 0
+}
 
 int main() {
 	int n, i, a;
