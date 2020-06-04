@@ -111,6 +111,8 @@ binaryTree::Noon(node * ptr) {
 	if ((Noon(ptr->rc_) % 2) != 0)
 		sum++;
 
+	//if ((ptr->data_ % 2) != 0)
+	//	sum+= ptr->data_;
 	//sum += Noon(ptr->lc_);
 	//sum += Noon(ptr->rc_);
 	
